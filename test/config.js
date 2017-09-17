@@ -1,4 +1,4 @@
-import { describe, it, fs, tmp } from './support/util';
+import { fs, tmp } from './support/util';
 import { Config } from '../lib/';
 
 describe('Config', function () {

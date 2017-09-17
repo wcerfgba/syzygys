@@ -1,13 +1,5 @@
 import fetch from 'node-fetch';
-import {
-  describe,
-  it,
-  context,
-  before,
-  after,
-  fs,
-  stub,
-} from './support/util';
+import { fs, path, stub } from './support/util';
 import { Feed, FeedItem } from '../lib';
 
 describe('Feed', function () {

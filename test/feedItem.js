@@ -1,4 +1,3 @@
-import { describe, it } from './support/util';
 import { FeedItem, Feed } from '../lib/';
 
 describe('FeedItem', function () {
