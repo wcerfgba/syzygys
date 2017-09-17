@@ -79,6 +79,9 @@ describe('Feed', function () {
       const originalFetchPromise = fetch.Promise;
 
       before(function () {
+        // Stubbing out Promise instead of fetch directly is grim but I couldn't
+        // get stubbing out `fetch, 'default'` with
+        // `import * as fetch from 'node-fetch'` to work.
         stub(fetch, 'Promise').rejects(new Error('Network error'));
       });
 
