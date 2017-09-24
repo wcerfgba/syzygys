@@ -4,7 +4,8 @@ import { Config } from '../lib/';
 describe('Config', function () {
   const validAttrs = {
     feeds: [],
-    templatePaths: [],
+    templateDir: '',
+    outputDir: '',
   };
 
   it('has feeds', function () {
@@ -13,10 +14,10 @@ describe('Config', function () {
     config.should.have.property('feeds').which.is.an.Array();
   });
 
-  it('has templatePaths', function () {
+  it('has templateDir', function () {
     const config = new Config(validAttrs);
 
-    config.should.have.property('templatePaths').which.is.an.Array();
+    config.should.have.property('templateDir').which.is.a.String();
   });
 
   describe('.fromFile', function () {
