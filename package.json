@@ -1,13 +1,13 @@
 {
   "name": "syzygys",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A feed aggregator, like Planet",
-  "main": "build/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "prepublish": "npm run-script build",
     "lint": "eslint .",
-    "build": "babel lib -d dist",
-    "clean": "rm -rf dist/",
+    "build": "babel src -d lib",
+    "clean": "rm -rf lib/",
     "test": "mocha --compilers js:babel-register"
   },
   "repository": "https://github.com/wcerfgba/syzygys",
