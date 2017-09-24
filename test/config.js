@@ -1,5 +1,5 @@
 import { fs, tmp } from './support/util';
-import { Config } from '../lib/';
+import { Config, Feed } from '../lib/';
 
 describe('Config', function () {
   const validAttrs = {
@@ -12,6 +12,26 @@ describe('Config', function () {
     const config = new Config(validAttrs);
 
     config.should.have.property('feeds').which.is.an.Array();
+  });
+
+  context('with plain Objects for feeds', function () {
+    const plainObjectFeedAttrs = {
+      feeds: [
+        {
+          name: 'Test Feed 1',
+        },
+        {
+          name: 'Test Feed 2',
+        },
+      ],
+    };
+
+    it('constructs Feed objects', function () {
+      const config = new Config(plainObjectFeedAttrs);
+
+      config.feeds[0].should.be.an.instanceof(Feed);
+      config.feeds[1].should.be.an.instanceof(Feed);
+    });
   });
 
   it('has templateDir', function () {
