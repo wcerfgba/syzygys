@@ -4,7 +4,7 @@
   "description": "A feed aggregator, like Planet",
   "main": "build/index.js",
   "scripts": {
-    "prepublish": "npm build",
+    "prepublish": "npm run-script build",
     "lint": "eslint .",
     "build": "babel lib -d dist",
     "clean": "rm -rf dist/",
