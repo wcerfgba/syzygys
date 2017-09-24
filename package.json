@@ -1,6 +1,6 @@
 {
   "name": "syzygys",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A feed aggregator, like Planet",
   "main": "build/index.js",
   "scripts": {
