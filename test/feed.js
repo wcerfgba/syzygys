@@ -49,7 +49,7 @@ describe('Feed', function () {
     feed.should.have.property('retrieve').which.is.a.Function();
   });
 
-  describe('#retrieve', function () {
+  describe('.prototype.retrieve', function () {
     it('returns a Promise', function () {
       const feed = new Feed(validAttrs);
       const feedItems = feed.retrieve();
@@ -108,6 +108,7 @@ describe('Feed', function () {
               status: 200,
               statusText: 'OK',
               body: fixtureData,
+              text: () => fixtureData,
             }));
         stub(fetch, 'Promise').resolves(fixture);
       });
