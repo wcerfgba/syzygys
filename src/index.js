@@ -27,11 +27,15 @@ export default class Syzygys {
   run() {
     const templates = Syzygys.getTemplatePaths(this.config.templateDir)
       .then(Syzygys.loadTemplates);
-    const feedItems = Syzygys.retrieveAllFeedItems(this.config.feeds)
-      .then(Syzygys.sortFeedItems);
+    const view = Syzygys.retrieveAllFeedItems(this.config.feeds)
+      .then(Syzygys.sortFeedItems)
+      .then(feedItems => ({
+        feedItems,
+        feeds: this.config.feeds,
+      }));
     return Promise.join(
-      templates, feedItems, this.config.outputDir,
-      Syzygys.renderTemplatesWithFeedItemsToOutput,
+      templates, view, this.config.outputDir,
+      Syzygys.renderTemplatesWithViewToOutput,
     );
   }
 
@@ -54,9 +58,9 @@ export default class Syzygys {
     return feedItems.sort((a, b) => new Date(b.date) - new Date(a.date));
   }
 
-  static renderTemplatesWithFeedItemsToOutput(templates, feedItems, outputDir) {
+  static renderTemplatesWithViewToOutput(templates, view, outputDir) {
     templates.forEach(templateP => templateP.then((template) => {
-      const rendered = template.render({ feedItems });
+      const rendered = template.render(view);
       const outputFilePath = path.join(outputDir, template.outputFileName);
       fs.writeFileAsync(outputFilePath, rendered);
     }));
