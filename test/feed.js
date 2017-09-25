@@ -102,7 +102,7 @@ describe('Feed', function () {
 
       before(function () {
         const fixture =
-          fs.readFileAsync(path.join(__dirname, '/fixture/feed.rss'))
+          fs.readFileAsync(path.join(__dirname, '/fixture/feed/feed.rss'))
             .then(fixtureData => ({
               ok: true,
               status: 200,
