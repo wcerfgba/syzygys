@@ -6,10 +6,12 @@ export default class Config {
     feeds = [],
     templateDir,
     outputDir,
+    feedItemCountLimit = Number.MAX_SAFE_INTEGER,
   } = {}) {
     this.feeds = feeds.map(attrs => new Feed(attrs));
     this.templateDir = templateDir;
     this.outputDir = outputDir;
+    this.feedItemCountLimit = feedItemCountLimit;
   }
 
   static fromFile(fileName) {

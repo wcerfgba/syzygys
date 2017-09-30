@@ -29,6 +29,7 @@ export default class Syzygys {
       .then(Syzygys.loadTemplates);
     const view = Syzygys.retrieveAllFeedItems(this.config.feeds)
       .then(Syzygys.sortFeedItems)
+      .then(feedItems => Syzygys.limitCountOfFeedItems(feedItems, this.config.feedItemCountLimit))
       .then(feedItems => ({
         feedItems,
         feeds: this.config.feeds,
@@ -56,6 +57,10 @@ export default class Syzygys {
 
   static sortFeedItems(feedItems) {
     return feedItems.sort((a, b) => new Date(b.date) - new Date(a.date));
+  }
+
+  static limitCountOfFeedItems(feedItems, count) {
+    return feedItems.slice(0, count);
   }
 
   static renderTemplatesWithViewToOutput(templates, view, outputDir) {

@@ -40,6 +40,12 @@ describe('Config', function () {
     config.should.have.property('templateDir').which.is.a.String();
   });
 
+  it('has feedItemCountLimit', function () {
+    const config = new Config();
+
+    config.should.have.property('feedItemCountLimit').which.is.a.Number();
+  });
+
   describe('.fromFile', function () {
     it('creates a Config from a file containing JSON', function () {
       const validConfig = new Config(validAttrs);

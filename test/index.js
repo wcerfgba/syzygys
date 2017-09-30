@@ -147,6 +147,22 @@ describe('Syzygys', function () {
     });
   });
 
+  describe('.limitCountOfFeedItems', function () {
+    const feedItemsFixture = [
+      new FeedItem({ title: 'First' }),
+      new FeedItem({ title: 'Second' }),
+      new FeedItem({ title: 'Third' }),
+    ];
+
+    it('returns the first N feed items', function () {
+      const limitedFeedItems = Syzygys.limitCountOfFeedItems(feedItemsFixture, 2);
+
+      limitedFeedItems.length.should.equal(2);
+      limitedFeedItems[0].title.should.equal('First');
+      limitedFeedItems[1].title.should.equal('Second');
+    });
+  });
+
   describe('.renderTemplatesWithViewToOutput', function () {
     
   });
