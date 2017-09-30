@@ -1,4 +1,4 @@
-import Syzygys from '../lib';
+import Syzygys from '../src';
 
 Syzygys.withConfig({
   feeds: [

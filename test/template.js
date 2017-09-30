@@ -1,4 +1,4 @@
-import { Template, FeedItem } from '../lib';
+import { Template, FeedItem } from '../src';
 import { fs, tmp } from './support/util';
 
 describe('Template', function () {

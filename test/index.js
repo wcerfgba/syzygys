@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import Syzygys, { Config, Feed, FeedItem, Template } from '../lib';
+import Syzygys, { Config, Feed, FeedItem, Template } from '../src';
 import { tmp, fs, path, Promise, stub } from './support/util';
 
 describe('Syzygys', function () {

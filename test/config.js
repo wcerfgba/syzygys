@@ -1,5 +1,5 @@
 import { fs, tmp } from './support/util';
-import { Config, Feed } from '../lib/';
+import { Config, Feed } from '../src/';
 
 describe('Config', function () {
   const validAttrs = {

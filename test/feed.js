@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import { fs, path, stub } from './support/util';
-import { Feed, FeedItem } from '../lib';
+import { Feed, FeedItem } from '../src';
 
 describe('Feed', function () {
   const validAttrs = {

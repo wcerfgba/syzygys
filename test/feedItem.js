@@ -1,4 +1,4 @@
-import { FeedItem, Feed } from '../lib/';
+import { FeedItem, Feed } from '../src/';
 
 describe('FeedItem', function () {
   const validAttrs = {
