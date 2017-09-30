@@ -57,7 +57,11 @@ export default class Syzygys {
     return Promise.resolve(feeds)
       .map((feed) => {
         log('Retrieving feed:', feed.name);
-        return feed.retrieve();
+        return feed.retrieve()
+          .catch((error) => {
+            log(feed.name, ':', error);
+            return [];
+          });
       })
       .reduce((acc, curr) => acc.concat(curr), []);
   }
