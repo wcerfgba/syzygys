@@ -15,3 +15,4 @@ export const sanitizeHtml = html => originalSanitizeHtml(html, {
     decodeEntities: true,
   },
 });
+export const log = console.log;

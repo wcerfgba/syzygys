@@ -2,7 +2,7 @@ import Config from './config';
 import Feed from './feed';
 import FeedItem from './feedItem';
 import Template from './template';
-import { fs, path, Promise } from './util';
+import { fs, path, Promise, log } from './util';
 
 export { Config, Feed, FeedItem, Template };
 
@@ -14,12 +14,14 @@ export default class Syzygys {
   }
 
   static withConfig(config = {}) {
+    log('Have config');
     return new Syzygys({
       config: new Config(config),
     });
   }
 
   static withConfigFile(configFile) {
+    log('Loading config file:', configFile);
     return fs.readFileAsync(configFile)
       .then(configBuffer => Syzygys.withConfig(JSON.parse(configBuffer)));
   }
@@ -41,17 +43,22 @@ export default class Syzygys {
   }
 
   static getTemplatePaths(templateDir) {
+    log('Getting template paths');
     return fs.readdirAsync(templateDir)
       .map(templateFileName => path.join(templateDir, templateFileName));
   }
 
   static loadTemplates(templatePaths) {
+    log('Loading templates');
     return templatePaths.map(Template.fromFile);
   }
 
   static retrieveAllFeedItems(feeds) {
     return Promise.resolve(feeds)
-      .map(feed => feed.retrieve())
+      .map((feed) => {
+        log('Retrieving feed:', feed.name);
+        return feed.retrieve();
+      })
       .reduce((acc, curr) => acc.concat(curr), []);
   }
 
@@ -65,6 +72,7 @@ export default class Syzygys {
 
   static renderTemplatesWithViewToOutput(templates, view, outputDir) {
     templates.forEach(templateP => templateP.then((template) => {
+      log('Rendering template for output:', template.outputFileName);
       const rendered = template.render(view);
       const outputFilePath = path.join(outputDir, template.outputFileName);
       fs.writeFileAsync(outputFilePath, rendered);
