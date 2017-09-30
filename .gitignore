@@ -1,3 +1,6 @@
 node_modules/
 dist/
 .vscode/
+yarn-error.log
+lib/
+example/output
