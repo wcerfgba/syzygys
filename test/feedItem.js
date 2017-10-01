@@ -8,34 +8,43 @@ describe('FeedItem', function () {
     date: new Date(),
     feed: new Feed(),
   };
+  const feedItem = new FeedItem(validAttrs);
 
   it('has a title', function () {
-    const feedItem = new FeedItem(validAttrs);
-
     feedItem.should.have.property('title').which.is.a.String();
   });
 
   it('has a url', function () {
-    const feedItem = new FeedItem(validAttrs);
-
     feedItem.should.have.property('url').which.is.a.String();
   });
 
   it('has a summary', function () {
-    const feedItem = new FeedItem(validAttrs);
-
     feedItem.should.have.property('summary').which.is.a.String();
   });
 
   it('has a date', function () {
-    const feedItem = new FeedItem(validAttrs);
+    feedItem.should.have.property('date');
+  });
 
-    feedItem.should.have.property('date').which.is.a.Date();
+  describe('.date', function () {
+    it('is an Object', function () {
+      feedItem.date.should.be.an.Object();
+    });
+
+    it('has a toString', function () {
+      feedItem.date.should.have.property('toString').which.is.a.String();
+    });
+
+    it('has a toISOString', function () {
+      feedItem.date.should.have.property('toISOString').which.is.a.String();
+    });
+
+    it('has a toObject', function () {
+      feedItem.date.should.have.property('toObject').which.is.an.Object();
+    });
   });
 
   it('has a feed', function () {
-    const feedItem = new FeedItem(validAttrs);
-
     feedItem.should.have.property('feed').which.is.an.instanceof(Feed);
   });
 });

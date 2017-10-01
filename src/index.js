@@ -2,7 +2,7 @@ import Config from './config';
 import Feed from './feed';
 import FeedItem from './feedItem';
 import Template from './template';
-import { fs, path, Promise, log } from './util';
+import { fs, path, Promise, log, Moment } from './util';
 
 export { Config, Feed, FeedItem, Template };
 
@@ -67,7 +67,7 @@ export default class Syzygys {
   }
 
   static sortFeedItems(feedItems) {
-    return feedItems.sort((a, b) => new Date(b.date) - new Date(a.date));
+    return feedItems.sort((a, b) => Moment(b.date.toString).diff(Moment(a.date.toString)));
   }
 
   static limitCountOfFeedItems(feedItems, count) {

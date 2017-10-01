@@ -16,3 +16,4 @@ export const sanitizeHtml = html => originalSanitizeHtml(html, {
   },
 });
 export const log = console.log;
+export { default as Moment } from 'moment';
