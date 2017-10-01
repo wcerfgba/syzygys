@@ -75,11 +75,13 @@ export default class Syzygys {
   }
 
   static renderTemplatesWithViewToOutput(templates, view, outputDir) {
-    templates.forEach(templateP => templateP.then((template) => {
-      log('Rendering template for output:', template.outputFileName);
-      const rendered = template.render(view);
-      const outputFilePath = path.join(outputDir, template.outputFileName);
-      fs.writeFileAsync(outputFilePath, rendered);
-    }));
+    fs.mkdirAsync(outputDir)
+      .catch(() => {})
+      .then(() => templates.forEach(templateP => templateP.then((template) => {
+        log('Rendering template for output:', template.outputFileName);
+        const rendered = template.render(view);
+        const outputFilePath = path.join(outputDir, template.outputFileName);
+        fs.writeFileAsync(outputFilePath, rendered);
+      })));
   }
 }
